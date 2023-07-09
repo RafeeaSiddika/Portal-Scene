@@ -35,15 +35,15 @@ export default class Overlay{
 
         this.resources.on('loaded', () => 
         {
-            gsap.delayedCall(0.5,() =>
-                {
-                    gsap.to(this.material.uniforms.uAlpha, {duration: 2.5, value: 0, onComplete: this.removeGeometry})
-                    console.log('loaded')
-                    this.loadingBarElement.style.transform = '';
-                    this.loadingBarElement.classList.add('ended')
-                    // this.loadingPercentElement.style.display = 'none';
-                    console.log(this.loadingBarElement)
-                })
+
+            gsap.to(this.material.uniforms.uPositionZ, {duration: 1.0, value: 1.0, onComplete: this.removeGeometry})
+            // gsap.to(this.material.uniforms.uAlpha, {duration: 2.5, value: 0.5, onComplete: this.removeGeometry})
+            console.log('loaded')
+            this.loadingBarElement.style.transform = '';
+            this.loadingBarElement.classList.add('ended')
+            // this.loadingPercentElement.style.display = 'none';
+            console.log(this.loadingBarElement)
+
 
             this.loadingPercentElement.classList.add('fade-out')
             
@@ -56,7 +56,6 @@ export default class Overlay{
         this.scene.remove(this.mesh)
     }
 
-
     setGeometry()
     {
         this.geometry = new THREE.PlaneGeometry(2,2,1,1); 
@@ -66,13 +65,17 @@ export default class Overlay{
     {
         this.material = new THREE.ShaderMaterial({
                 uniforms: {
+                    uPositionZ: {value: 0.0},
                     uAlpha: {value: 1.0}
                 },
                 transparent: true,
+                wireframe:false,
                 vertexShader: `
+                    uniform float uPositionZ; 
                     void main()
                     {
-                        gl_Position = vec4(position, 1.0); 
+                        vec3 newPosition = vec3(position.x, position.y, uPositionZ);
+                        gl_Position = vec4(newPosition, 1.0); 
                     }
                 `,
                 fragmentShader: `

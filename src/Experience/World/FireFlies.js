@@ -38,6 +38,9 @@ export default class FireFlies
         this.setPoints(); 
         this.setGeometry(); 
         this.setMaterial(); 
+
+        this.points.frustumCulled = false; 
+
         
     }
 
@@ -59,9 +62,9 @@ export default class FireFlies
 
         for(let i = 0; i < this.debugObject.count; i++)
         {
-            this.positions[i * 3 + 0] = (Math.random() -0.5) * 4; 
-            this.positions[i * 3 + 1] = Math.random() * 1.5; 
-            this.positions[i * 3 + 2] = (Math.random() -0.5) * 4; 
+            this.positions[i * 3 + 0] = (Math.random() -0.5) * 6.0; 
+            this.positions[i * 3 + 1] = Math.random() * 2.0; 
+            this.positions[i * 3 + 2] = (Math.random() -0.5) * 6.0; 
 
             this.scale[i] = Math.random();
 
@@ -78,6 +81,7 @@ export default class FireFlies
         this.material = new fireFliesMaterial();
         this.points.material = this.material;
         this.points.material.transparent = true;
+
 
     }
     
