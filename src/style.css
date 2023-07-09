@@ -49,7 +49,7 @@ body
     text-align: center;
     margin-top: 10px;
     opacity: 1;
-    transition: opacity 3.0s;
+    transition: opacity 0.5s;
 }
 
 .loading-percent.fade-out

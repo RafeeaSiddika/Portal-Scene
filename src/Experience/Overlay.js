@@ -36,15 +36,11 @@ export default class Overlay{
         this.resources.on('loaded', () => 
         {
 
-            gsap.to(this.material.uniforms.uPositionZ, {duration: 1.0, value: 1.0, onComplete: this.removeGeometry})
-            // gsap.to(this.material.uniforms.uAlpha, {duration: 2.5, value: 0.5, onComplete: this.removeGeometry})
+            gsap.to(this.material.uniforms.uAlpha, {duration: 2.5, value: 0, onComplete: this.removeGeometry})
             console.log('loaded')
             this.loadingBarElement.style.transform = '';
             this.loadingBarElement.classList.add('ended')
-            // this.loadingPercentElement.style.display = 'none';
             console.log(this.loadingBarElement)
-
-
             this.loadingPercentElement.classList.add('fade-out')
             
         })
@@ -69,6 +65,7 @@ export default class Overlay{
                     uAlpha: {value: 1.0}
                 },
                 transparent: true,
+                depthWrite: false,
                 wireframe:false,
                 vertexShader: `
                     uniform float uPositionZ; 

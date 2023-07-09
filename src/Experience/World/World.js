@@ -16,7 +16,6 @@ export default class World
         this.experience = new Experience()
         this.scene = this.experience.scene 
         this.resources = this.experience.resources
-        this.fireFlies = new FireFlies(); 
 
 
         //Once the reources are loaded, sets up the floor, fox and environment 
@@ -24,6 +23,9 @@ export default class World
         {
             //Setup
             this.portal = new Portal()
+            window.setTimeout(() => {
+                this.fireFlies = new FireFlies(); 
+            }, 500)
 
         })
     }
