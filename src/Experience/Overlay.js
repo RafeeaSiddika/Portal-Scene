@@ -37,7 +37,7 @@ export default class Overlay{
         {
             gsap.delayedCall(0.5,() =>
                 {
-                    gsap.to(this.material.uniforms.uAlpha, {duration: 3, value: 0})
+                    gsap.to(this.material.uniforms.uAlpha, {duration: 2.5, value: 0, onComplete: this.removeGeometry})
                     console.log('loaded')
                     this.loadingBarElement.style.transform = '';
                     this.loadingBarElement.classList.add('ended')
@@ -46,11 +46,16 @@ export default class Overlay{
                 })
 
             this.loadingPercentElement.classList.add('fade-out')
+            
         })
 
-
-
     }
+    
+    removeGeometry = () =>
+    {
+        this.scene.remove(this.mesh)
+    }
+
 
     setGeometry()
     {
