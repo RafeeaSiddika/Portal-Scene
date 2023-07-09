@@ -1,2 +1,2 @@
 # Portal-Scene
- Portal Scene created through BRUNO-SIMON ThreeJS Journey Course
+ Portal Scene created using BRUNO-SIMON ThreeJS Journey Course
